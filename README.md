@@ -17,10 +17,11 @@ Create and activate a virtual environment (recommended):
 Install python libraries (Django, MongoEngine):
 
     $ cd pico-ckan
-    $ pip install -r requirements.txt 
+    $ python setup.py install 
 
 Start up Django:
 
+    $ cd pkan
     $ python manage.py runserver
 
 Load some metadata (works with any CKAN end point):
