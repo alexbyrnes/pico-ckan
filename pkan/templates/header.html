@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{STATIC_URL}}css/ckan.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+  var facets = ['title', 'notes']
+
+$.ajax({
+  'url': 'http://192.168.200.138:8983/solr/select',
+  'data': $.param({'wt':'json', 'q':'*:*', 'facet':'true', 'facet.limit':'-1', 'facet.field': facets }, true),
+  'success': function(data) { 
+
+var facet_fields = data['facet_counts']['facet_fields'];
+
+var facet_menu_container = $("section.module");
+
+$.each(facet_fields, function(facet, array_of_counts) {
+
+    // Add a header
+    var facet_header = $('<h2>');
+    var clear_all_button = '<a class="action">Clear All</a>';
+ 
+    // Add clear all button
+    facet_header.append(facet);
+    facet_header.append(clear_all_button);
+    // Style
+    facet_header.addClass('module-heading');
+
+    facet_menu_container.append(facet_header);
+
+
+    // Make a list of the facet values and counts
+    var facet_container =  $('<ul>'); 
+
+    // Style
+    facet_container.addClass('unstyled').addClass('nav').addClass('nav-simple').addClass('nav-facet');
+    
+    facet_menu_container.append(facet_container);
+
+    // Add list item for each facet value and count
+    $.each(array_of_counts, function(index, item) {
+      // Skip every other
+      if(1 == index % 2) {
+        return true;
+      }
+
+      // The facet value and count button
+      var facet_val = $('<li>');
+
+      facet_val.addClass('nav-item');
+      var facet_val_link = $('<a>')
+      facet_val_link.append(item);
+      facet_val_link.append(' (' + array_of_counts[index + 1] + ')');
+      facet_val.append(facet_val_link);
+
+      // Add the item
+      facet_container.append(facet_val);
+    });
+});
+
+
+  },
+  'dataType': 'jsonp',
+  'jsonp': 'json.wrf'
+
+});
+
+
+</script>
+
+  </head>
+  <body>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Pico CKAN</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+           </ul>
+            <form class="navbar-form pull-right" method="post" action="/">
+              {% csrf_token %}
+              <input class="span2" name="q" type="text" placeholder="Search">
+              <button type="submit" class="btn ">Submit</button>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+

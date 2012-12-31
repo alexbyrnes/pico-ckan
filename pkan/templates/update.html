@@ -1,0 +1,24 @@
+{% include "header.html" %}
+
+ <div class="container">
+
+      <div class="row">
+      <div class="span4">
+
+
+   <form method="post" action="/update/">
+      {% csrf_token %}
+        <input type="hidden" name="id" value="{{ dataset.id }}"></li>
+          <input type="text" name="title" placeholder="Title" value="{{ dataset.title }}" required>
+          <input type="text" name="url" placeholder="Url" value="{{ dataset.url }}" required>
+          <textarea name="notes" placeholder="Notes" rows=5 cols=50 required>{{ dataset.notes }}</textarea>
+          <input type="submit" value="Save Changes" class="btn">
+    </form>
+
+  </div>
+  </div>
+</div>
+
+
+  </body>
+</html>

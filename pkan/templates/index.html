@@ -1,0 +1,76 @@
+{% include "header.html" %}
+
+
+<div role="main">
+
+<div class="container">
+
+
+<aside class="secondary">
+  <section class="module module-narrow module-shallow">
+
+
+<!--
+    <h2 class="module-heading"><a /dataset?res_format=CSV&amp;sort=relevance+asc&amp;q=data" class="action">Clear All</a></h2>
+      <nav>
+        <ul class="unstyled nav nav-simple nav-facet">
+              
+
+              <li class="nav-item active">
+                <a href="/dataset?res_format=CSV&amp;tags=poll&amp;sort=relevance+asc&amp;q=data">
+                  <span>trans (1)</span>
+                </a>
+              </li>
+
+
+
+        </ul>
+      </nav>
+      <p class="module-footer">
+          <a href="/dataset?res_format=CSV&amp;tags=poll&amp;tags=transparency&amp;sort=relevance+asc&amp;q=data&amp;_tags_limit=0" class="read-more">Show More Tags</a>
+      </p> -->
+
+
+
+  </section>
+</aside> 
+
+
+  <div class="primary">
+
+<!-- Cycle through entries -->
+
+
+    {% for dataset in Datasets %}
+      <div class="row">
+      <div class="span4">
+      <h2> {{ dataset.title }} </h2>
+      <p>{{ dataset.url }}</p>
+      <p>{{ dataset.notes }}</p>
+      <form method="get" action="/update" style="display: inline">
+        <input type="hidden" name="id" value="{{ dataset.id }}">
+        <input type="hidden" name="title" value="{{ dataset.title }}">
+        <input type="hidden" name="url" value="{{ dataset.url }}">
+        <input type="hidden" name="notes" value="{{ dataset.notes }}">
+        <input type="submit" name="" value="update" class="btn">
+      </form>
+      <form method="get" action="/delete" style="display: inline">
+        <input type="hidden" name="id" value="{{ dataset.id }}">
+        <input type="submit" value="delete" class="btn">
+      </form>
+      </div>
+      </div>
+    {% endfor %}
+
+    </div> <!-- end class primary -->
+</div> <!-- end class container -->
+</div> <!-- end role main -->
+
+
+
+<!-- boostrap resources -->
+
+<script src="{{STATIC_URL}}js/bootstrap.js"></script>
+
+  </body>
+</html>
