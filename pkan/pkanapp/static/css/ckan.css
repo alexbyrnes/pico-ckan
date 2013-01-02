@@ -4460,7 +4460,7 @@ ul.icons li .icon-large:before {
   font-size: 11px;
 }
 .tag {
-  background: url("../../../base/images/background-tag.png") no-repeat -13px center;
+  background: url("/static/img//background-tag.png") no-repeat -13px center;
   position: relative;
   display: block;
   font-size: 11px;
@@ -4472,7 +4472,7 @@ ul.icons li .icon-large:before {
 }
 .tag:before {
   content: "";
-  background: url("../../../base/images/background-tag.png") no-repeat center left;
+  background: url("/static/img/background-tag.png") no-repeat center left;
   position: absolute;
   display: block;
   top: 0;
@@ -4894,7 +4894,7 @@ ol.media-grid:after {
   display: block;
 }
 .nav-item.active > a {
-  background: url("../../../base/images/background-tag.png") no-repeat -13px center;
+  background: url("/static/img/background-tag.png") no-repeat -13px center;
   position: relative;
   display: block;
   font-size: 11px;
@@ -4919,7 +4919,7 @@ ol.media-grid:after {
 }
 .nav-item.active > a:before {
   content: "";
-  background: url("../../../base/images/background-tag.png") no-repeat center left;
+  background: url("/static/img/background-tag.png") no-repeat center left;
   position: absolute;
   display: block;
   top: 0;
@@ -4965,7 +4965,7 @@ ol.media-grid:after {
   top: 2px;
   width: 16px;
   height: 16px;
-  background-image: url("../../../base/images/sprite-ckan-icons.png");
+  background-image: url("/static/img/sprite-ckan-icons.png"); 
   background-repeat: no-repeat;
   background-position: 16px 16px;
   content: "";
@@ -5182,7 +5182,7 @@ textarea {
   top: 2px;
   width: 16px;
   height: 16px;
-  background-image: url("../../../base/images/sprite-ckan-icons.png");
+  background-image: url("/static/img/sprite-ckan-icons.png"); 
   background-repeat: no-repeat;
   background-position: 16px 16px;
   width: 17px;
@@ -5774,7 +5774,7 @@ textarea {
   top: 2px;
   width: 16px;
   height: 16px;
-  background-image: url("../../../base/images/sprite-ckan-icons.png");
+  background-image: url("/static/img/sprite-ckan-icons.png"); 
   background-repeat: no-repeat;
   background-position: 16px 16px;
   width: 16px;
@@ -6281,7 +6281,7 @@ textarea {
   top: 2px;
   width: 16px;
   height: 16px;
-  background-image: url("../../../base/images/sprite-ckan-icons.png");
+  background-image: url("/static/img/sprite-ckan-icons.png"); 
   background-repeat: no-repeat;
   background-position: 16px 16px;
 }
@@ -6473,7 +6473,7 @@ textarea {
   top: 2px;
   width: 16px;
   height: 16px;
-  background-image: url("../../../base/images/sprite-ckan-icons.png");
+  background-image: url("/static/img/sprite-ckan-icons.png"); 
   background-repeat: no-repeat;
   background-position: 16px 16px;
   text-indent: -900em;

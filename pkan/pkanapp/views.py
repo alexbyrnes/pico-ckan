@@ -28,23 +28,17 @@ def index(request):
 def add(request):
     
     if request.method == 'POST':
-        title = request.POST['title']
-        url = request.POST['url']
-        notes = request.POST['notes']
-
-        dataset = CkanDataset()
-        dataset.title = title
-        dataset.url = url
-        dataset.notes = notes
+        dataset.title = request.POST['title']
+        dataset.url = request.POST['url']
+        dataset.notes = request.POST['notes']
 
         dataset.save()
-       
-        template = 'add.html'
+        template = 'index.html'
         params = {'Datasets': CkanDataset.objects}
 
     elif request.method == 'GET':
         template = 'add.html'
-        params = {'dataset':dataset}
+        params = {}
 
     return render_to_response(template, params, context_instance=RequestContext(request))
  

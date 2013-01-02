@@ -4,6 +4,8 @@
     <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
     <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="{{STATIC_URL}}css/ckan.css" rel="stylesheet" type="text/css">
+    <link href="{{STATIC_URL}}css/select2/select2.css" rel="stylesheet" type="text/css"/>
+
 
     <style type="text/css">
       body {
@@ -12,74 +14,34 @@
       }
     </style>
 
-
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-
-  var facets = ['title', 'notes']
-
-$.ajax({
-  'url': 'http://192.168.200.138:8983/solr/select',
-  'data': $.param({'wt':'json', 'q':'*:*', 'facet':'true', 'facet.limit':'-1', 'facet.field': facets }, true),
-  'success': function(data) { 
-
-var facet_fields = data['facet_counts']['facet_fields'];
-
-var facet_menu_container = $("section.module");
-
-$.each(facet_fields, function(facet, array_of_counts) {
-
-    // Add a header
-    var facet_header = $('<h2>');
-    var clear_all_button = '<a class="action">Clear All</a>';
- 
-    // Add clear all button
-    facet_header.append(facet);
-    facet_header.append(clear_all_button);
-    // Style
-    facet_header.addClass('module-heading');
-
-    facet_menu_container.append(facet_header);
 
 
-    // Make a list of the facet values and counts
-    var facet_container =  $('<ul>'); 
+<!-- solr ajax -->
 
-    // Style
-    facet_container.addClass('unstyled').addClass('nav').addClass('nav-simple').addClass('nav-facet');
-    
-    facet_menu_container.append(facet_container);
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/reuters.js"></script>
 
-    // Add list item for each facet value and count
-    $.each(array_of_counts, function(index, item) {
-      // Skip every other
-      if(1 == index % 2) {
-        return true;
-      }
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/Core.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractManager.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/managers/Manager.jquery.js"></script>
 
-      // The facet value and count button
-      var facet_val = $('<li>');
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/Parameter.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/ParameterStore.js"></script>
 
-      facet_val.addClass('nav-item');
-      var facet_val_link = $('<a>')
-      facet_val_link.append(item);
-      facet_val_link.append(' (' + array_of_counts[index + 1] + ')');
-      facet_val.append(facet_val_link);
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractWidget.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/ResultWidget.js"></script>
 
-      // Add the item
-      facet_container.append(facet_val);
-    });
-});
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/reuters.theme.js"></script>
 
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/helpers/jquery/ajaxsolr.theme.js"></script>
 
-  },
-  'dataType': 'jsonp',
-  'jsonp': 'json.wrf'
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/jquery.livequery.js"></script>
 
-});
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/jquery/PagerWidget.js"></script>
 
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractFacetWidget.js"></script>
 
-</script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/TagcloudWidget.js"></script>
 
   </head>
   <body>
@@ -97,6 +59,7 @@ $.each(facet_fields, function(facet, array_of_counts) {
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
+              <li><a href="/add">New Dataset</a></li>
            </ul>
             <form class="navbar-form pull-right" method="post" action="/">
               {% csrf_token %}
@@ -112,5 +75,19 @@ $.each(facet_fields, function(facet, array_of_counts) {
 
 
 
+
+<div role="main">
+
+<div class="container">
+
+
+<aside class="secondary">
+  <section class="module module-narrow module-shallow">
+
+
+
+
+  </section>
+</aside>
 
 

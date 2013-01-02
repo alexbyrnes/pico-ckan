@@ -1,10 +1,15 @@
 {% include "header.html" %}
 
-     </form>
-      <form method="get" action="/delete" style="display: inline">
-        <input type="hidden" name="id" value="{{ dataset.id }}">
-        <input type="submit" value="delete" class="btn">
+   <div class="span4">
+      <form method="post" action="/">
+
+        {% csrf_token %}
+        <input name="title" type="text" placeholder="Title">
+        <input name="url" type="text" placeholder="Url">
+        <textarea name="notes" placeholder="Notes" rows=5 cols=50 required></textarea>
+        <button type="submit" class="btn">Submit</button>
       </form>
-      </div>
-      </div>
+  </div>
+
+{% include "footer.html" %}
 
