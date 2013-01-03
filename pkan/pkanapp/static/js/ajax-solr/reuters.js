@@ -4,12 +4,14 @@ var Manager;
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://10.0.0.109:8983/solr/collection1/'
+      solrUrl: 'http://192.168.1.67:8983/solr/collection1/'
     });
+
     Manager.addWidget(new AjaxSolr.ResultWidget({
       id: 'result',
       target: '#docs'
     }));
+
     Manager.addWidget(new AjaxSolr.PagerWidget({
       id: 'pager',
       target: '#pager',
@@ -20,6 +22,7 @@ var Manager;
         $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
       }
     }));
+
     var fields = [ 'title', 'notes' ];
     for (var i = 0, l = fields.length; i < l; i++) {
 
@@ -32,11 +35,21 @@ var Manager;
 
       // Add a header
       var facet_header = $('<h2>');
-      var clear_all_button = '<a class="action">Clear All</a>';
+      var clear_all_button = $('<a>');
+  
+      // Add clear all click handler
+      clear_all_button.text('Clear All').click({field:fields[i]}, function (event) {
+ 
+        Manager.widgets[event.data.field].clear();
 
+        Manager.doRequest();
+        return false;
+      });
+
+   
       // Add clear all button
       facet_header.append(fields[i]);
-      facet_header.append(clear_all_button);
+      facet_header.append(clear_all_button.addClass('action'));
 
       // Style
       facet_header.addClass('module-heading');
@@ -59,7 +72,16 @@ var Manager;
       Manager.addWidget(new AjaxSolr.TagcloudWidget({
         id: fields[i],
         target: '#' + fields[i],
-        field: fields[i]
+        field: fields[i],
+        clickHandler: function (value) {
+          var self = this, meth = this.multivalue ? 'add' : 'set';
+          return function () {
+          if (self[meth].call(self, value)) {
+            self.doRequest();
+          }
+          return false;
+          }
+        }
       }));
     }
 
