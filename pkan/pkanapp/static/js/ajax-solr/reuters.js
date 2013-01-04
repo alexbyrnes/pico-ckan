@@ -4,7 +4,7 @@ var Manager;
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://192.168.1.67:8983/solr/collection1/'
+      solrUrl: 'http://192.168.1.66:8983/solr/collection1/'
     });
 
     Manager.addWidget(new AjaxSolr.ResultWidget({
@@ -89,9 +89,9 @@ var Manager;
     Manager.store.addByValue('q', '*:*');
     var params = {
       facet: true,
-      'facet.field': [ 'title', 'notes' ],
-      'facet.limit': 20,
-      'facet.mincount': 1,
+      'facet.field': fields,
+      'facet.limit': 10,
+      'facet.mincount': 2,
       'f.topics.facet.limit': 50,
       'json.nl': 'map'
     };
