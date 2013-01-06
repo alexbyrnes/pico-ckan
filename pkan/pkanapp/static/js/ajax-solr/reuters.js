@@ -1,11 +1,41 @@
 var Manager;
 
+var fields = [ 'license', 'tags', 'format', 'author' ];
+
+var params = {
+   facet: true,
+   'facet.field': fields,
+   'facet.limit': 10,
+   'facet.mincount': 2,
+   'f.topics.facet.limit': 50,
+   'json.nl': 'map'
+    };
+
+
+
 (function ($) {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://192.168.1.66:8983/solr/collection1/'
+      solrUrl: 'http://192.168.200.124:8983/solr/collection1/'
     });
+
+  Manager.addWidget(new AjaxSolr.PagerWidget({
+      id: 'pager',
+      target: '#pager',
+      prevLabel: '&lt;',
+      nextLabel: '&gt;',
+      innerWindow: 1,
+      renderHeader: function (perPage, offset, total) {
+        $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
+      }
+    }));
+
+    Manager.addWidget(new AjaxSolr.AutocompleteWidget({
+      id: 'text',
+      target: '#search',
+      fields: fields
+    }));
 
     Manager.addWidget(new AjaxSolr.ResultWidget({
       id: 'result',
@@ -23,7 +53,6 @@ var Manager;
       }
     }));
 
-    var fields = [ 'title', 'notes' ];
     for (var i = 0, l = fields.length; i < l; i++) {
 
 
@@ -87,14 +116,6 @@ var Manager;
 
     Manager.init();
     Manager.store.addByValue('q', '*:*');
-    var params = {
-      facet: true,
-      'facet.field': fields,
-      'facet.limit': 10,
-      'facet.mincount': 2,
-      'f.topics.facet.limit': 50,
-      'json.nl': 'map'
-    };
 
     for (var name in params) {
       Manager.store.addByValue(name, params[name]);

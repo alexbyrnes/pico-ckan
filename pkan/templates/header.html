@@ -4,7 +4,8 @@
     <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
     <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="{{STATIC_URL}}css/ckan.css" rel="stylesheet" type="text/css">
-    <link href="{{STATIC_URL}}css/select2/select2.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.autocomplete.css" media="screen" />
 
 
     <style type="text/css">
@@ -41,7 +42,13 @@
 
 <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractFacetWidget.js"></script>
 
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractTextWidget.js"></script>
+
 <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/TagcloudWidget.js"></script>
+
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/AutocompleteWidget.js"></script>
+
 
   </head>
   <body>
@@ -61,11 +68,10 @@
               <li class="active"><a href="/">Home</a></li>
               <li><a href="/add">New Dataset</a></li>
            </ul>
-            <form class="navbar-form pull-right" method="post" action="/">
-              {% csrf_token %}
-              <input class="span2" name="q" type="text" placeholder="Search">
-              <button type="submit" class="btn ">Submit</button>
-            </form>
+        <ul id="search" class="navbar-form pull-right">
+        <input class="span2" type="text" id="query" name="query" autocomplete="off" class="ac_input" placeholder='Search'>
+      </ul>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
