@@ -17,7 +17,7 @@ var params = {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://192.168.200.124:8983/solr/collection1/'
+      solrUrl: 'http://10.1.10.34:8983/solr/collection1/'
     });
 
   Manager.addWidget(new AjaxSolr.PagerWidget({

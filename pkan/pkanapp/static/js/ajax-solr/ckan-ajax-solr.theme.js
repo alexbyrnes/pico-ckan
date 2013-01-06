@@ -18,14 +18,14 @@ AjaxSolr.theme.prototype.tag = function (value, weight, handler) {
   facet_val.addClass('nav-item');
 
 
-  var facet_val_link = $('<a href="#" class="tagcloud_item"/>').text(value).click(handler);
+  var facet_val_link = $('<a href="#" />').text(value).click(handler);
 
   facet_val_link.append(' (' + weight + ')');
   facet_val.append(facet_val_link);
 
   facet_val.attr('id', 'tag_' + value);
  
-  return facet_val.addClass('tagcloud_item');
+  return facet_val;
 };
 
 AjaxSolr.theme.prototype.facet_link = function (value, handler) {
