@@ -1,11 +1,11 @@
 var Manager;
 
-var fields = [ 'license', 'tags', 'format', 'author' ];
+var fields = [ 'source', 'format', 'license', 'tags' ];
 
 var params = {
    facet: true,
    'facet.field': fields,
-   'facet.limit': 10,
+   'facet.limit': 25,
    'facet.mincount': 2,
    'f.topics.facet.limit': 50,
    'json.nl': 'map'
@@ -17,7 +17,7 @@ var params = {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://10.1.10.34:8983/solr/collection1/'
+      solrUrl: 'http://192.168.1.66:8983/solr/collection1/'
     });
 
   Manager.addWidget(new AjaxSolr.PagerWidget({

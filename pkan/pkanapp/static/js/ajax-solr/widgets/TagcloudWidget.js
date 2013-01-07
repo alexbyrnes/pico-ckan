@@ -17,7 +17,7 @@ AjaxSolr.TagcloudWidget = AjaxSolr.AbstractFacetWidget.extend({
       objectedItems.push({ facet: facet, count: count });
     }
     objectedItems.sort(function (a, b) {
-      return a.facet < b.facet ? -1 : 1;
+      return a.count > b.count ? -1 : 1;
     });
 
     $(this.target).empty();

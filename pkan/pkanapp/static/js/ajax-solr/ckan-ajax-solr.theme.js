@@ -23,7 +23,7 @@ AjaxSolr.theme.prototype.tag = function (value, weight, handler) {
   facet_val_link.append(' (' + weight + ')');
   facet_val.append(facet_val_link);
 
-  facet_val.attr('id', 'tag_' + value);
+  //facet_val.attr('id', 'tag_' + value);
  
   return facet_val;
 };
