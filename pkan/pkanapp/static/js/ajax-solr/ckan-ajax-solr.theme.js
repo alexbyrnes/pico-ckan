@@ -9,7 +9,36 @@ AjaxSolr.theme.prototype.result = function (doc, snippet) {
 
 AjaxSolr.theme.prototype.snippet = function (doc) {
   var output = '';
-  output += doc.url + "<br/>" + doc.notes;
+
+  if (doc.url) {
+    output += '<i class="icon-globe"></i> <a href="' + doc.url + '">' + doc.url + '</a><br/>';
+  }
+
+  if (doc.notes) {
+    output += doc.notes;
+  }
+ 
+  if (doc.res_url) {
+
+  output += '<div class="accordion" id="accordion">';
+  output += '  <div class="accordion-group">';
+  output += '    <div class="accordion-heading">';
+  output += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse_' + doc.id + '">';
+  output += '<i class="icon-chevron-down"></i>';
+  output += '</a></div>';
+  output += '<div id="collapse_' + doc.id + '" class="accordion-body collapse"><div class="accordion-inner">';
+  }
+       
+  for (var u in doc.res_url) {
+    output += '<br/><a href="' + doc.res_url[u] + '">' + doc.res_url[u] + '</a>';
+  }
+ 
+  if (doc.res_url) {
+    output += '</div></div></div></div>';
+  }
+
+  output += '<hr>';
+
   return output;
 };
 

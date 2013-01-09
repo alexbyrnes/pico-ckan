@@ -17,7 +17,7 @@ var params = {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://192.168.1.66:8983/solr/collection1/'
+      solrUrl: 'http://10.1.10.37:8983/solr/collection1/'
     });
 
   Manager.addWidget(new AjaxSolr.PagerWidget({
@@ -30,6 +30,12 @@ var params = {
         $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
       }
     }));
+
+    Manager.addWidget(new AjaxSolr.CurrentSearchWidget({
+      id: 'currentsearch',
+      target: '#selection'
+    }));
+
 
     Manager.addWidget(new AjaxSolr.AutocompleteWidget({
       id: 'text',
@@ -77,7 +83,10 @@ var params = {
 
    
       // Add clear all button
-      facet_header.append(fields[i]);
+      facet_header.append('<i class="icon-filter"></i> ');
+
+      // capitalize header
+      facet_header.append(fields[i].charAt(0).toUpperCase() + fields[i].slice(1));
       facet_header.append(clear_all_button.addClass('action'));
 
       // Style
