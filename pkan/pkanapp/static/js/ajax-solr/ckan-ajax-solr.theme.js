@@ -10,13 +10,10 @@ AjaxSolr.theme.prototype.result = function (doc, snippet) {
 AjaxSolr.theme.prototype.snippet = function (doc) {
   var output = '';
 
-  if (doc.url) {
-    output += '<i class="icon-globe"></i> <a href="' + doc.url + '">' + doc.url + '</a><br/>';
-  }
-
   if (doc.notes) {
     output += doc.notes;
   }
+
  
   if (doc.res_url) {
 
@@ -24,11 +21,15 @@ AjaxSolr.theme.prototype.snippet = function (doc) {
   output += '  <div class="accordion-group">';
   output += '    <div class="accordion-heading">';
   output += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse_' + doc.id + '">';
-  output += '<i class="icon-chevron-down"></i>';
+  output += '<i class="icon-chevron-down"></i><strong>Resources</strong>';
   output += '</a></div>';
   output += '<div id="collapse_' + doc.id + '" class="accordion-body collapse"><div class="accordion-inner">';
   }
-       
+ 
+  if (doc.url) {
+    output += '<br/><i class="icon-globe"></i> <a href="' + doc.url + '">' + doc.url + '</a><br/>';
+  }
+      
   for (var u in doc.res_url) {
     output += '<br/><a href="' + doc.res_url[u] + '">' + doc.res_url[u] + '</a>';
   }
@@ -36,8 +37,6 @@ AjaxSolr.theme.prototype.snippet = function (doc) {
   if (doc.res_url) {
     output += '</div></div></div></div>';
   }
-
-  output += '<hr>';
 
   return output;
 };
