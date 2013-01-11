@@ -16,7 +16,7 @@
  limitations under the License.
 -->
 
-<schema name="ckan" version="1.4">
+<schema name="ckan" version="1.4"> <!-- DGU variant -->
 
 <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
@@ -93,24 +93,32 @@
 
 
 <fields>
-    <field name="_version_" type="long" indexed="true" stored="true"/>
 
-
-
-    <!-- <field name="index_id" type="string" indexed="true" stored="true" required="true" /> -->
-
-    <field name="id" type="string" indexed="true" stored="true" required="true" />
-
-    <!-- for mongo connector -->
+  <!-- for mongo connector -->
     <field name="_id" type="string" indexed="true" stored="true" />
     <field name="_ts" type="long" indexed="true" stored="true" />
     <field name="ns" type="string" indexed="true" stored="true"/>
 
+  <!-- for solr 4 -->
+
+    <field name="_version_" type="long" indexed="true" stored="true"/>
+
+   <!-- catchall -->
+    <dynamicField name="*" type="string" indexed="true"  stored="false" multiValued="true"/>
+   <!-- tweaks for search engine -->
+
+    <field name="format" type="string" indexed="true" stored="true" multiValued="true"/>
+    
+    <field name="source" type="string" indexed="true" stored="true" multiValued="false"/>
+
+    
 
 
+    <field name="id" type="string" indexed="true" stored="true" required="true" />
 
+   <!-- not required. doesn't show in api json -->
+    <field name="site_id" type="string" indexed="true" stored="true" />
 
-    <!-- <field name="site_id" type="string" indexed="true" stored="true" required="true" /> -->
     <field name="title" type="text" indexed="true" stored="true" />
     <field name="entity_type" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="state" type="string" indexed="true" stored="true" omitNorms="true" />
@@ -121,7 +129,9 @@
     <field name="ckan_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="download_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="notes" type="text" indexed="true" stored="true"/>
+
     <field name="author" type="textgen" indexed="true" stored="true" />
+    
     <field name="author_email" type="textgen" indexed="true" stored="true" />
     <field name="maintainer" type="textgen" indexed="true" stored="true" />
     <field name="maintainer_email" type="textgen" indexed="true" stored="true" />
@@ -131,6 +141,7 @@
     <field name="ratings_average" type="float" indexed="true" stored="false" />
     <field name="tags" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="groups" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="group_titles" type="text" indexed="true" stored="true" multiValued="true"/>
 
     <field name="capacity" type="string" indexed="true" stored="true" multiValued="false"/>
 
@@ -156,27 +167,25 @@
     <field name="resources_accessed_total" type="int" indexed="true" stored="false"/>
     <field name="resources_accessed_recent" type="int" indexed="true" stored="false"/>
 
-    <field name="metadata_created" type="date" indexed="true" stored="true" multiValued="false"/>
-    <field name="metadata_modified" type="date" indexed="true" stored="true" multiValued="false"/>
+
+    <field name="metadata_created" type="text" indexed="true" stored="true" multiValued="false"/>
+    <field name="metadata_modified" type="text" indexed="true" stored="true" multiValued="false"/>
 
     <field name="indexed_ts" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
 
-    <!-- Copy the title field into titleString, and treat as a string
-         (rather than text type).  This allows us to sort on the titleString -->
+    <field name="publisher" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="parent_publishers" type="string" indexed="true" stored="true" multiValued="true"/>
+
+    <!-- Copy the title field into title_string, and treat as a string
+         (rather than text type).  This allows us to sort on the title_string -->
     <field name="title_string" type="string" indexed="true" stored="false" />
 
     <field name="data_dict" type="string" indexed="false" stored="true" />
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
-    <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
-    <dynamicField name="*" type="string" indexed="true"  stored="false" multiValued="true"/>
 </fields>
 
-<!-- <uniqueKey>index_id</uniqueKey> -->
-
 <uniqueKey>_id</uniqueKey>
-
-
 <defaultSearchField>text</defaultSearchField>
 <solrQueryParser defaultOperator="AND"/>
 
@@ -185,7 +194,6 @@
 <copyField source="download_url" dest="urls"/>
 <copyField source="res_url" dest="urls"/>
 <copyField source="extras_*" dest="text"/>
-<copyField source="vocab_*" dest="text"/>
 <copyField source="urls" dest="text"/>
 <copyField source="name" dest="text"/>
 <copyField source="title" dest="text"/>
@@ -194,8 +202,12 @@
 <copyField source="notes" dest="text"/>
 <copyField source="tags" dest="text"/>
 <copyField source="groups" dest="text"/>
+<copyField source="group_titles" dest="text"/>
 <copyField source="res_description" dest="text"/>
+<copyField source="res_format" dest="text"/>
 <copyField source="maintainer" dest="text"/>
 <copyField source="author" dest="text"/>
 
 </schema>
+
+
