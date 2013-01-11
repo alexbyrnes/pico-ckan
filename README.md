@@ -3,6 +3,10 @@ pico-ckan
 
 A micro open data hub built on [Unix design principles] (http://en.wikipedia.org/wiki/Unix_philosophy).
 
+
+![Example use as search engine](https://raw.github.com/alexbyrnes/pico-ckan/master/pico-ckan-health-facet.png)
+
+
 ## Install (Debian)
 
 Install python and MongoDB:
