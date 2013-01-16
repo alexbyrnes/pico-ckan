@@ -62,7 +62,7 @@ Load some data:
 
 ### Faceted search
 
-Install [Solr 4] (http://wiki.apache.org/solr/SolrInstall) which allows automatic indexing with MongoDB. 
+Install [Solr 4] (http://wiki.apache.org/solr/SolrInstall), which allows automatic indexing with MongoDB. 
 
 Link Solr schema to included schema:
 
