@@ -31,7 +31,7 @@ AjaxSolr.theme.prototype.snippet = function (doc) {
   }
       
   for (var u in doc.res_url) {
-    output += '<br/><a href="' + doc.res_url[u] + '">' + doc.res_url[u] + '</a>';
+    output += '<br/><a href="' + doc.res_url[u] + '">' + doc.res_url[u] + '</a> <a href="/visualize/?id=' + doc._id + '&url=' + doc.res_url[u] + '&backend=dataproxy">Recline</a>';
   }
  
   if (doc.res_url) {

@@ -62,7 +62,17 @@ def update(request):
         params = {'dataset':dataset}
    
     return render_to_response(template, params, context_instance=RequestContext(request))
-                              
+
+def visualize(request):
+    id = eval("request." + request.method + "['id']")
+    dataset = CkanDataset.objects(id=id)[0]
+
+    template = 'visualize.html'
+    params = {'dataset':dataset}
+
+    return render_to_response(template, params, context_instance=RequestContext(request))
+
+                             
 
 def delete(request):
     id = eval("request." + request.method + "['id']")

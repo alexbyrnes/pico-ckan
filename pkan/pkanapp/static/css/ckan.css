@@ -5067,7 +5067,7 @@ textarea {
 .control-large .control-label {
   font-size: 18px;
 }
-.form-actions {
+/*.form-actions {
   background: none;
   margin-left: -25px;
   margin-right: -25px;
@@ -5165,7 +5165,8 @@ textarea {
 }
 .form-select label {
   margin-right: 5px;
-}
+}*/
+
 .simple-input label,
 .simple-input button {
   display: none;
