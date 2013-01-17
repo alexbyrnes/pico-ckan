@@ -1,33 +1,78 @@
-{% include "header.html" %}
-</head>
-<body>
+{% extends "page.html" %}
+{% block styles %} 
+  {{ super() }}
 
-{% include "navbar.html" %}
+  <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet" type="text/css">
 
+{% endblock %}
 
-
-<div role="main">
-
-<div class="container">
-<ul id="selection"></ul>
+{% block subtitle %}Pico CKAN{% endblock %}
 
 
-<aside class="secondary">
+{% block primary_content %}
+
+{# Pager #}
+<div class='pagination pagination-centered'><ul id='pager'></ul></div>
+
+{# Search Results #}
+<div id='docs'></div>
+
+
+{% endblock %}
+
+{% block secondary_content %}
+{#  {{ h.snippet('snippets/facet_list.html', title='Tags', name='tags') }}
+  {{ h.snippet('snippets/facet_list.html', title='Formats', name='res_format') }}
+  {{ h.snippet('snippets/facet_list.html', title='Groups', name='groups') }} #}
   <section class="module module-narrow module-shallow">
 
 
 
 
   </section>
-</aside>
+
+{% endblock %}
+
+{%- block scripts %}
 
 
-<div class="primary">
+  {{ super() }}
 
-<div class='pagination pagination-centered'><ul id='pager'></ul></div>
-<div id='docs'></div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="{{STATIC_URL}}js/bootstrap.js"></script>
 
-</div>
+  <!-- solr ajax -->
 
-{% include "footer.html" %}
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/ckan-ajax-solr.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/Core.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractManager.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/managers/Manager.jquery.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/Parameter.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/ParameterStore.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractWidget.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/ResultWidget.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/ckan-ajax-solr.theme.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/helpers/jquery/ajaxsolr.theme.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/jquery.livequery.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/jquery/PagerWidget.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractFacetWidget.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/core/AbstractTextWidget.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/TagcloudWidget.js"></script>
+
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/jquery.autocomplete.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/AutocompleteWidget.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ajax-solr/widgets/CurrentSearchWidget.js"></script>
+
+{% endblock -%}
 

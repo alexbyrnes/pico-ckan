@@ -1,0 +1,17 @@
+Coffin==0.3.7
+Django==1.4.3
+Jinja2==2.6
+argparse==1.2.1
+django-haystack==2.0.0-beta
+haystack==0.15
+importlib==1.0.2
+mongo-connector==1.1.1
+mongoengine==0.7.8
+pkan==0.1
+pyes==0.19.1
+pymongo==2.4.1
+pysolr==2.1.0-beta
+python-ptrace==0.6.4
+simplejson==2.6.2
+urllib3==1.5
+wsgiref==0.1.2

@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from coffin.shortcuts import render_to_response
 from django.template import RequestContext
 from models import CkanDataset 
 import datetime

@@ -1,4 +1,18 @@
-{% include "header.html" %}
+{% extends "page.html" %}
+{% block styles %}
+  {{ super() }}
+
+  <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block subtitle %}Pico CKAN{% endblock %}
+
+
+{% block primary_content %}
+
+
 
    <form method="post" action="/update/">
       {% csrf_token %}
@@ -10,5 +24,5 @@
     </form>
 
 
-{% include "footer.html" %}
+{% endblock %}
 
