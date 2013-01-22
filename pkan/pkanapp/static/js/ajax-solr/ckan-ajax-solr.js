@@ -17,7 +17,7 @@ var params = {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://192.168.1.66:8983/solr/collection1/'
+      solrUrl: 'http://192.168.1.146:8983/solr/collection1/'
     });
 
   Manager.addWidget(new AjaxSolr.PagerWidget({
@@ -27,15 +27,18 @@ var params = {
       nextLabel: '&gt;',
       innerWindow: 1,
       renderHeader: function (perPage, offset, total) {
-        $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
+        // Not used yet.
+        //$('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
       }
     }));
 
+    /*
+    // Not used yet.
     Manager.addWidget(new AjaxSolr.CurrentSearchWidget({
       id: 'currentsearch',
       target: '#selection'
     }));
-
+    */
 
     Manager.addWidget(new AjaxSolr.AutocompleteWidget({
       id: 'text',
@@ -48,64 +51,10 @@ var params = {
       target: '#docs'
     }));
 
-    Manager.addWidget(new AjaxSolr.PagerWidget({
-      id: 'pager',
-      target: '#pager',
-      prevLabel: '&lt;',
-      nextLabel: '&gt;',
-      innerWindow: 1,
-      renderHeader: function (perPage, offset, total) {
-        $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
-      }
-    }));
-
     for (var i = 0, l = fields.length; i < l; i++) {
 
 
-      var facet_menu_container = $("aside.secondary");
-
-      var facet_section = $('<section>');
-      facet_section.addClass('module').addClass('module-narrow').addClass('module-shallow');
-
-
-      // Add a header
-      var facet_header = $('<h2>');
-      var clear_all_button = $('<a>');
-  
-      // Add clear all click handler
-      clear_all_button.text('Clear All').click({field:fields[i]}, function (event) {
- 
-        Manager.widgets[event.data.field].clear();
-
-        Manager.doRequest();
-        return false;
-      });
-
-   
-      // Add clear all button
-      facet_header.append('<i class="icon-filter"></i> ');
-
-      // capitalize header
-      facet_header.append(fields[i].charAt(0).toUpperCase() + fields[i].slice(1));
-      facet_header.append(clear_all_button.addClass('action'));
-
-      // Style
-      facet_header.addClass('module-heading');
-
-      facet_section.append(facet_header);
-
-      // Add list container
-      var facet_container =  $('<ul>');
-
-      // Style
-      facet_container.addClass('unstyled').addClass('nav').addClass('nav-simple').addClass('nav-facet');
-
-      // Link to ajax-solr
-      facet_container.attr('id', fields[i]);
-
-      facet_section.append(facet_container);
-
-      facet_menu_container.append(facet_section);
+      $("aside.secondary").append(AjaxSolr.theme('facet_list', {'field' : fields[i]}));
 
       Manager.addWidget(new AjaxSolr.TagcloudWidget({
         id: fields[i],
@@ -119,7 +68,14 @@ var params = {
           }
           return false;
           }
-        }
+        },
+        clearHandler: function (event) {
+
+        Manager.widgets[event.data.field].clear();
+
+        Manager.doRequest();
+        return false;
+      }
       }));
     }
 

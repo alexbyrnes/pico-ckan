@@ -27,8 +27,6 @@ jQuery(function($) {
       state.dataset
     );
 
-    console.log(datasetInfo);
-
     dataset = new recline.Model.Dataset(datasetInfo);
     createExplorer(dataset, state);
 
@@ -92,14 +90,3 @@ var createExplorer = function(dataset, state) {
 }
 
 
-
-function zip(a1, a2) {
-   var ret = {};
-
-  for (e in a1) {
-       ret[a1[e]] = a2[e];
-  }
-
-  return ret;
-
-}
