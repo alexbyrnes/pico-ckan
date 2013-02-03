@@ -3,6 +3,7 @@ pico-ckan
 
 A micro open data hub built on [Unix design principles] (http://en.wikipedia.org/wiki/Unix_philosophy).
 
+[Demo Video on YouTube](http://www.youtube.com/watch?v=1VL7y9VS5uw)
 
 ![Example use as search engine](https://raw.github.com/alexbyrnes/pico-ckan/master/pico-ckan-health-facet.png)
 
