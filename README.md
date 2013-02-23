@@ -3,7 +3,7 @@ pico-ckan
 
 A micro open data hub built on Unix design principles.
 
-[Screenshot](https://raw.github.com/alexbyrnes/pico-ckan/master/pico-ckan-health-facet.png) / [Video](http://www.youtube.com/watch?v=1VL7y9VS5uw)
+[Screenshot](https://github.com/alexbyrnes/pico-ckan/blob/master/screenshot_markup.md) / [Video](http://www.youtube.com/watch?v=1VL7y9VS5uw)
 
 
 ## Full Install (Debian)
@@ -35,6 +35,30 @@ View!
 
     http://localhost:8000/
 
+## With Existing Solr Endpoint
+
+This allows you to search existing datahubs from another site.  The only requirement is a Solr endpoint like those in CKAN and [DKAN](http://drupal.org/project/dkan) and a page to display the search results.
+
+Include the [ajax-solr directory] (https://github.com/alexbyrnes/pico-ckan/tree/master/pkan/pkanapp/static/js/ajax-solr).  Then add these elements to the body of the page:
+
+Search box:
+
+    <input type="text" id="query" class="ac_input">
+
+Search results:
+
+    <div id='docs'></div>
+
+Facet menu:
+
+    <section class="module module-narrow module-shallow"></section>
+
+Pager:
+
+    <ul id='pager'></ul>
+
+[Example with styles and Javascript includes](https://github.com/alexbyrnes/pico-ckan/blob/master/pkan/templates/index.html)
+
 
 ## Additional features:
 
@@ -44,7 +68,7 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 
 * [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack): Easy to populate and deploy
 * [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
-* [DataBeam] (https://github.com/philipashlock/DataBeam): Adds an API to any CSV
+* [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
 
 
 ### Faceted search
