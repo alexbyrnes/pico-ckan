@@ -27,13 +27,11 @@ Start up Django:
     $ cd pkan
     $ python manage.py runserver
 
-Load some metadata (works with any CKAN end point):
+Load some metadata (works with any CKAN API):
 
     $ curl http://opendata.cmap.illinois.gov/api/action/package_show?id=4cb2a4e2-8aaa-484d-8a9f-0874e70697fe | python filter_open_json.py | mongoimport -d metadb -c metadata
 
-View!
-
-    http://localhost:8000/
+For more information on loading metadata and data see [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack)
 
 ## With Existing Solr Endpoint
 
