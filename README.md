@@ -1,14 +1,12 @@
 pico-ckan
 ===================
 
-A micro open data hub built on [Unix design principles] (http://en.wikipedia.org/wiki/Unix_philosophy).
+A micro open data hub built on Unix design principles.
 
-[Demo Video on YouTube](http://www.youtube.com/watch?v=1VL7y9VS5uw)
-
-![Example use as search engine](https://raw.github.com/alexbyrnes/pico-ckan/master/pico-ckan-health-facet.png)
+[Screenshot](https://raw.github.com/alexbyrnes/pico-ckan/master/pico-ckan-health-facet.png) / [Video](http://www.youtube.com/watch?v=1VL7y9VS5uw)
 
 
-## Install (Debian)
+## Full Install (Debian)
 
 Install python and MongoDB:
 
@@ -38,27 +36,15 @@ View!
     http://localhost:8000/
 
 
-## Notes:
-
-Postgres is required if you want to host data (rows and columns) on your own server.  Generally, pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the possiblity for datastores open.  However, here is an entrely optional datastore that can be accessed through a simple API.  The goal is to develop a loosely coupled stack (like LAMP) with components that can be used together or separately.  Well-defined interfaces have been written among components wherever possible (the search component and Django, the search interface and the Solr library, data and metadata stores etc).  
-
-
 ## Additional features:
 
 ### Datastore
 
-Install Postgres:
+Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the choice of datastores open.  
 
-    $ sudo apt-get install postgresql
-
-Install csvkit:
-
-    $ pip install csvkit
-
-Load some data:
-
-    $ curl https://data.cityofchicago.org/api/views/28km-gtjn/rows.csv?accessType=DOWNLOAD | csvsql --no-constraints --insert --table firehouses --db "postgresql://odsuser:odspass@localhost/opendatastore"
-    # May require additional postgres setup such as adding a password style user and enabling local logins
+* [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack): Easy to populate and deploy
+* [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
+* [DataBeam] (https://github.com/philipashlock/DataBeam): Adds an API to any CSV
 
 
 ### Faceted search
