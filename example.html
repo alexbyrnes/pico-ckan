@@ -1,0 +1,99 @@
+<!DOCTYPE html><!--[if IE 7]> <html class="ie ie7"> <![endif]-->
+<!--[if IE 8]> <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]> <html class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>Pico CKAN - Search</title>
+    <link rel="shortcut icon" href="favicon" />
+  <link href="pkan/pkanapp/static/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  <link href="pkan/pkanapp/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="pkan/pkanapp/static/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="screen">
+  <link href="pkan/pkanapp/static/css/ckan.css" rel="stylesheet" type="text/css">
+      <style type="text/css">
+        body {
+          padding-top: 60px;
+          padding-bottom: 40px;
+        }
+      </style>
+  </head>
+  <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Pico CKAN</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+           </ul>
+        <ul id="search" class="navbar-form pull-right">
+           <input class="span2" type="text" id="query" name="query"  class="ac_input" placeholder='Search'>
+     </ul>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div role="main">
+      <div id="content" class="container">
+            <div class="primary">
+<div class='pagination pagination-centered'><ul id='pager'></ul></div>
+<div id='docs'></div>
+            </div>
+            <aside class="secondary">
+  <section class="module module-narrow module-shallow">
+  </section>
+            </aside>
+      </div>
+    </div>
+
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="pkan/pkanapp/static/js/bootstrap.js"></script>
+
+  <!-- solr ajax -->
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/ckan-ajax-solr.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/Core.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/AbstractManager.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/managers/Manager.jquery.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/Parameter.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/ParameterStore.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/AbstractWidget.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/widgets/ResultWidget.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/ckan-ajax-solr.theme.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/helpers/jquery/ajaxsolr.theme.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/jquery.livequery.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/widgets/jquery/PagerWidget.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/AbstractFacetWidget.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/core/AbstractTextWidget.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/widgets/TagcloudWidget.js"></script>
+
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/jquery.autocomplete.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/widgets/AutocompleteWidget.js"></script>
+  <script type="text/javascript" src="pkan/pkanapp/static/js/ajax-solr/widgets/CurrentSearchWidget.js"></script>
+
+<!-- Ajax solr uses the $.browser property, which is deprecated. This adds it back. -->
+<script type="text/javascript" src="http://jquery.thewikies.com/browser/jquery.browser.js"></script>
+
+
+
+  </body>
+</html>
+

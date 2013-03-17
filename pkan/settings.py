@@ -25,12 +25,12 @@ DATABASES = {
 }
 
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr'
-    },
-}
+#HAYSTACK_CONNECTIONS = {
+#    'default': {
+#        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+#        'URL': 'http://127.0.0.1:8983/solr'
+#    },
+#}
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'haystack',
+#    'haystack',
     'pkan.pkanapp',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
