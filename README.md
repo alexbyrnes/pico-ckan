@@ -86,8 +86,6 @@ Load some metadata (works with any CKAN API):
 
     $ curl http://opendata.cmap.illinois.gov/api/action/package_show?id=4cb2a4e2-8aaa-484d-8a9f-0874e70697fe | python filter_open_json.py | mongoimport -d metadb -c metadata
 
-For more information on loading metadata and data see [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack)
-
 Install mongo-connector
 
     $ pip install mongo-connector
@@ -109,9 +107,11 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 * [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
 * [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
 
+
 ## Full transcript of install from bare Ubuntu 12.04 Vagrant Box ([Download](http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-amd64-disk1.box))
 
 ```
+
 sudo apt-get update
 curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
 sudo apt-get install git openjdk-6-jre
@@ -125,5 +125,9 @@ curl http://localhost:8983/solr/collection1/select?q=*:*
 
 # If you want to change the solrUrl (default is localhost):
 vim pico-ckan/pkan/pkanapp/static/js/ajax-solr/ckan-ajax-solr.js
+
 ```
 
+Don't forget to forward port 8983 from Vagrant.  Add this line to .vagrant.d\boxes\<Your Box>\Vagrantfile :
+
+    config.vm.forward_port 8983, 8983    
