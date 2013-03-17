@@ -13,7 +13,7 @@ Download/Extract Solr:
 
     $ curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
 
-*(Please replace with another [solr mirror](http://www.apache.org/dyn/closer.cgi/lucene/solr/4.2.0))*
+   *(Please replace with another [mirror](http://www.apache.org/dyn/closer.cgi/lucene/solr/4.2.0))*
 
 Copy schema to Solr:
 
@@ -69,9 +69,9 @@ Pager:
 
 Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the choice of datastores open.  
 
-* [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack): Easy to populate and deploy
-* [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
-* [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
+* [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack): Easy to populate and deploy.  Part of the Pico-CKAN project.
+* [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions.
+* [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV.
 
 
 ## Transcript of install from bare Ubuntu 12.04 Vagrant Box ([Download](http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-amd64-disk1.box))
