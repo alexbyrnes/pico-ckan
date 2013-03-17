@@ -32,7 +32,7 @@ Test:
 
     $ curl http://localhost:8983/solr/collection1/select?q=*:*
 
-Download this repository and open [example.html](https://github.com/alexbyrnes/pico-ckan/blob/master/example.html) in your favorite browser.  (Assumes Solr install at localhost.)
+Download this repository and open example.html in your favorite browser.  (Assumes Solr install at localhost.)
 
 
 ## Adapting an existing page to use the search elements
