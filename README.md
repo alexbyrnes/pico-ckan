@@ -1,14 +1,14 @@
 pico-ckan
 ===================
 
-A micro open data hub built on Unix design principles.
+A micro open data hub built on [Unix design principles](http://en.wikipedia.org/wiki/Unix_philosophy).
 
 [Screenshot](https://github.com/alexbyrnes/pico-ckan/blob/master/screenshot_markup.md) / [Video](http://www.youtube.com/watch?v=1VL7y9VS5uw)
 
 
-## Full Install (Debian)
+## Full Install (Ubuntu 12.04)
 
-Install python and MongoDB:
+Install python and MongoDB ([more info](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)):
 
     $ sudo apt-get install python-pip python-dev build-essential mongodb-10gen
 
@@ -73,14 +73,21 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 
 Install [Solr 4] (http://wiki.apache.org/solr/SolrInstall), which allows automatic indexing with MongoDB. 
 
+    $ sudo apt-get install solr-jetty
+    $ JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+    # NOTE: Replace "java-6-openjdk-i386" with your Java home directory (may be amd64)
+
+    $ export JAVA_HOME
+    $ echo -e "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
+
 Link Solr schema to included schema:
 
-    sudo mv /etc/solr/conf/schema.xml /etc/solr/conf/schema.xml.bak
-    sudo ln -s ~/pico-ckan/schema.xml /etc/solr/conf/schema.xml
+    $ sudo mv /etc/solr/conf/schema.xml /etc/solr/conf/schema.xml.bak
+    $ sudo ln -s pico-ckan/schema.xml /etc/solr/conf/schema.xml
 
-Restart Solr (there are various ways to do this.  The easiest is pointing your browser at http://localhost:8983/solr/admin/, going to Core Admin and then Reload.):
+Restart Solr 
 
-    http://localhost:8983/solr/admin
+    $ sudo service jetty restart
     
 Install mongo-connector
 
