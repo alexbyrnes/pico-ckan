@@ -20,6 +20,7 @@ Copy schema to Solr:
     $ cp pico-ckan/schema.xml solr-4.2.0/example/solr/collection1/conf/
 
 Start Solr server:
+
     $ cd solr-4.2.0/example/
     $ java -jar start.jar &
 
