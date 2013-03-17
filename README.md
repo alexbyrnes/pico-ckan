@@ -7,6 +7,8 @@ A micro open data hub built on [Unix design principles](http://en.wikipedia.org/
 
 ## Quick Install (Solr + Any web page)
 
+*Scroll to the end of this file for a full bash transcript*
+
 Download/Extract Solr:
 
     $ curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
@@ -15,11 +17,11 @@ Download/Extract Solr:
 
 Copy schema to Solr:
 
-    $ cp pico-ckan/schema.xml solr-4.2.0/solr/example/solr/collection1/conf/
+    $ cp pico-ckan/schema.xml solr-4.2.0/example/solr/collection1/conf/
 
 Start Solr server:
-
-    $ java -jar solr-4.2.0/example/start.jar &
+    $ cd solr-4.2.0/example/
+    $ java -jar start.jar &
 
 Add sample dataset:
 
@@ -105,4 +107,22 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 * [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack): Easy to populate and deploy
 * [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
 * [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
+
+## Full transcript of install from bare Ubuntu 12.04 Vagrant Box ([Download](http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-amd64-disk1.box))
+
+```
+sudo apt-get update
+curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
+sudo apt-get install git openjdk-6-jre
+git clone https://github.com/alexbyrnes/pico-ckan.git
+cp pico-ckan/schema.xml solr-4.2.0/example/solr/collection1/conf/
+cd solr-4.2.0/example/
+java -jar start.jar &
+cd -
+curl 'http://localhost:8983/solr/update/json?commit=true' --data-binary @pico-ckan/sample.json -H 'Content-type:application/json'
+curl http://localhost:8983/solr/collection1/select?q=*:*
+
+# If you want to change the solrUrl (default is localhost):
+vim pico-ckan/pkan/pkanapp/static/js/ajax-solr/ckan-ajax-solr.js
+```
 
