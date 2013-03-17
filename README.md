@@ -5,8 +5,60 @@ A micro open data hub built on [Unix design principles](http://en.wikipedia.org/
 
 [Screenshot](https://github.com/alexbyrnes/pico-ckan/blob/master/screenshot_markup.md) / [Video](http://www.youtube.com/watch?v=1VL7y9VS5uw)
 
+## Quick Install (Solr + Any web page)
+
+Download/Extract Solr:
+
+    $ curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
+
+(Please replace with another [solr mirror](http://www.apache.org/dyn/closer.cgi/lucene/solr/4.2.0))
+
+Copy schema to Solr:
+
+    $ cp pico-ckan/schema.xml solr-4.2.0/solr/example/solr/collection1/conf/
+
+Start Solr server:
+
+    $ java -jar solr-4.2.0/example/start.jar &
+
+Add sample dataset:
+
+    $ curl 'http://localhost:8983/solr/update/json?commit=true' --data-binary @pico-ckan/sample.json -H 'Content-type:application/json'
+
+Test:
+
+    $ curl http://localhost:8983/solr/collection1/select?q=*:*
+
+Open [example.html](https://github.com/alexbyrnes/pico-ckan/blob/master/example.html) in your favorite browser.  (Assumes Solr install at localhost.)
+
+
+## Adapting an existing page to use the search elements
+
+Include the [ajax-solr directory] (https://github.com/alexbyrnes/pico-ckan/tree/master/pkan/pkanapp/static/js/ajax-solr).  Then add these elements to the body of the page:
+
+Search box:
+
+    <input type="text" id="query" class="ac_input">
+
+Search results:
+
+    <div id='docs'></div>
+
+Facet menu:
+
+    <section class="module module-narrow module-shallow"></section>
+
+Pager:
+
+    <ul id='pager'></ul>
+
+[Example with styles and Javascript includes](https://github.com/alexbyrnes/pico-ckan/blob/master/example.html)
+
+
 
 ## Full Install (Ubuntu 12.04)
+
+*The full install uses Django/MongoEngine to edit datasets, and mongo-connector to sync MongoDB and Solr.  Use this route if you want flexibility transforming datasets, and a formal Create, Update, and Delete interface.*
 
 Install python and MongoDB ([more info](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)):
 
@@ -33,29 +85,15 @@ Load some metadata (works with any CKAN API):
 
 For more information on loading metadata and data see [OpenDataStack] (https://github.com/alexbyrnes/OpenDataStack)
 
-## With Existing Solr Endpoint
+Install mongo-connector
 
-This allows you to search existing datahubs from another site.  The only requirement is a Solr endpoint like those in CKAN and [DKAN](http://drupal.org/project/dkan) and a page to display the search results.
+    $ pip install mongo-connector
 
-Include the [ajax-solr directory] (https://github.com/alexbyrnes/pico-ckan/tree/master/pkan/pkanapp/static/js/ajax-solr).  Then add these elements to the body of the page:
+Start up mongo-connector
 
-Search box:
+    $ python ./mongo_connector.py -m localhost:27017 -t http://localhost:8983/solr -o config.txt -n metadb.metadata -u _id -d ./doc_managers/solr_doc_manager.py
 
-    <input type="text" id="query" class="ac_input">
-
-Search results:
-
-    <div id='docs'></div>
-
-Facet menu:
-
-    <section class="module module-narrow module-shallow"></section>
-
-Pager:
-
-    <ul id='pager'></ul>
-
-[Example with styles and Javascript includes](https://github.com/alexbyrnes/pico-ckan/blob/master/pkan/templates/index.html)
+Any data you add to the metadb database and metadata collection will be synced with the search index.
 
 
 ## Additional features:
@@ -68,35 +106,4 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 * [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
 * [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
 
-
-### Faceted search
-
-Install [Solr 4] (http://wiki.apache.org/solr/SolrInstall), which allows automatic indexing with MongoDB. 
-
-    $ sudo apt-get install solr-jetty
-    $ JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
-    # NOTE: Replace "java-6-openjdk-i386" with your Java home directory (may be amd64)
-
-    $ export JAVA_HOME
-    $ echo -e "NO_START=0\nJETTY_HOST=127.0.0.1\nJETTY_PORT=8983\nJAVA_HOME=$JAVA_HOME" | sudo tee /etc/default/jetty
-
-Link Solr schema to included schema:
-
-    $ sudo mv /etc/solr/conf/schema.xml /etc/solr/conf/schema.xml.bak
-    $ sudo ln -s pico-ckan/schema.xml /etc/solr/conf/schema.xml
-
-Restart Solr 
-
-    $ sudo service jetty restart
     
-Install mongo-connector
-
-    $ pip install mongo-connector
-
-Start up mongo-connector
-
-    $ python ./mongo_connector.py -m localhost:27017 -t http://localhost:8983/solr -o config.txt -n metadb.metadata -u _id -d ./doc_managers/solr_doc_manager.py
-
-Any data you add to the metadb database and metadata collection will be synced with the search index.
-
-
