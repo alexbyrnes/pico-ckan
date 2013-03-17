@@ -11,7 +11,7 @@ Download/Extract Solr:
 
     $ curl http://apache.mesi.com.ar/lucene/solr/4.2.0/solr-4.2.0.tgz | tar xz
 
-(Please replace with another [solr mirror](http://www.apache.org/dyn/closer.cgi/lucene/solr/4.2.0))
+*(Please replace with another [solr mirror](http://www.apache.org/dyn/closer.cgi/lucene/solr/4.2.0))*
 
 Copy schema to Solr:
 
@@ -29,7 +29,7 @@ Test:
 
     $ curl http://localhost:8983/solr/collection1/select?q=*:*
 
-Open [example.html](https://github.com/alexbyrnes/pico-ckan/blob/master/example.html) in your favorite browser.  (Assumes Solr install at localhost.)
+Download this repository and open [example.html](https://github.com/alexbyrnes/pico-ckan/blob/master/example.html) in your favorite browser.  (Assumes Solr install at localhost.)
 
 
 ## Adapting an existing page to use the search elements
@@ -106,4 +106,3 @@ Pico-ckan, like [CKAN] (http://www.ckan.org) deals with metadata and leaves the 
 * [CartoDB] (https://github.com/CartoDB/cartodb20): Interactive maps, other Geo functions
 * [DataBeam] (https://github.com/philipashlock/DataBeam): Add an API to any CSV
 
-    
