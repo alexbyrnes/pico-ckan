@@ -6,7 +6,7 @@ var params = {
    facet: true,
    'facet.field': fields,
    'facet.limit': 8,
-   'facet.mincount': 2,
+   'facet.mincount': 1,
    'f.topics.facet.limit': 50,
    'json.nl': 'map'
     };
