@@ -17,7 +17,7 @@ var params = {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://localhost:8983/solr/collection1/'
+      solrUrl: 'http://ec2-54-242-137-218.compute-1.amazonaws.com:8983/solr/collection1/'
     });
 
   Manager.addWidget(new AjaxSolr.PagerWidget({
