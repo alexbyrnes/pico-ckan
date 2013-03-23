@@ -17,6 +17,7 @@ Install python libraries (Django, MongoEngine):
 
     $ cd pico-ckan
     $ python setup.py install 
+    $ pip install -r requirements.txt
 
 Start up Django:
 
