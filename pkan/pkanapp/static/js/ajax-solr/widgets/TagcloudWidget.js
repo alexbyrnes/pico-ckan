@@ -33,7 +33,14 @@ AjaxSolr.TagcloudWidget = AjaxSolr.AbstractFacetWidget.extend({
         maxCount = count;
       }
 
-      if (selected_facets_searchable.indexOf(this.field + ':' + facet) > 0) {
+      // Facets with spaces are in quotes from solr
+      var quoted_facet = facet
+
+      if (facet.indexOf(' ') > 0) {
+        quoted_facet = '"' + facet + '"';
+      }
+
+      if (selected_facets_searchable.indexOf(this.field + ':' + quoted_facet) > 0) {
           selected = true;
       }
 

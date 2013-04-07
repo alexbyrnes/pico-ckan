@@ -50,7 +50,7 @@ AjaxSolr.theme.prototype.snippet = function (doc) {
   for (var u in doc.res_url) {
 
     var shorturl = doc.res_url[u].replace(/.*\/(.*$)/i, '$1');
-    output += '<tr><td><a href="' + doc.res_url[u] + '">' + shorturl + '</a></td><td><a style="margin-bottom: 6px;margin-top: 6px;margin-left: 20px;" class="btn btn-small btn-success" href="/visualize/?id=' + doc._id + '&url=' + doc.res_url[u] + '&backend=dataproxy">Recline</a></td></tr>';
+    output += '<tr><td><a href="' + doc.res_url[u] + '" target="_blank">' + shorturl + '</a></td><td><a target="_blank" style="margin-bottom: 6px;margin-top: 6px;margin-left: 20px;" class="btn btn-small btn-success" href="/visualize/?id=' + doc._id + '&url=' + doc.res_url[u] + '&backend=dataproxy">Recline</a></td></tr>';
   }
 
   output += '</table>'; 
