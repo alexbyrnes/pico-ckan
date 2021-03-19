@@ -1,6 +1,6 @@
 Coffin==0.3.7
 Django==1.4.3
-Jinja2==2.6
+Jinja2==2.11.3
 argparse==1.2.1
 haystack==0.15
 mongo-connector==1.1.1
